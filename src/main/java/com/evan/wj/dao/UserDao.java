@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Select;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Mapper
 @Component
 public interface UserDao {
@@ -18,4 +20,10 @@ public interface UserDao {
     User getByUsernameAndPassword(String username,String password);
     @Insert("insert into user (username,password,salt) values(#{user.username},#{user.password},#{user.salt})")
     public void add(@Param("user") User user);
+    @Select("select username,id,name,phone,email,enabled from user")
+    public List<User> findAll();
+
+
+
+
 }

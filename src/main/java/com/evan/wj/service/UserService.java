@@ -4,6 +4,9 @@ import com.evan.wj.dao.UserDao;
 import com.evan.wj.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -24,6 +27,11 @@ public class UserService {
     public void add(User user){
         userdao.add(user);
     }
+    public List<User> findAll(){
+        return userdao.findAll();
+    }
+
+
 
 //    public void add(User user) {
 //        userdao.save(user);

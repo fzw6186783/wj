@@ -1,6 +1,9 @@
 package com.gm.wj.util;
 
-import java.util.Random;
+import com.evan.wj.bean.AdminMenu;
+import org.apache.shiro.crypto.hash.Hash;
+
+import java.util.*;
 
 public class StringUtils {
     public static String getRandomString(int length) {
@@ -13,4 +16,6 @@ public class StringUtils {
         }
         return sb.toString();
     }
+
+
 }

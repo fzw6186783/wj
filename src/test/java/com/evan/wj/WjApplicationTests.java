@@ -1,27 +1,28 @@
 package com.evan.wj;
 
+import com.evan.wj.bean.AdminRole;
 import com.evan.wj.bean.Book;
 import com.evan.wj.bean.Category;
-import com.evan.wj.service.BookService;
-import com.evan.wj.service.CategroyService;
+import com.evan.wj.bean.JotterArticle;
+import com.evan.wj.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootTest
 class WjApplicationTests {
 @Autowired
-//    CategroyService cs;
-    BookService bs;
+JotterArticleService jotterArticleService;
+//    AdminMenuService adminMenuService;
+    //AdminPermissionService  adminPermissionService;
     @Test
     void contextLoads() {
-        Category ca=new Category();
-        ca.setId(3);
-         Book book=new Book();book.setCategory(ca);
-      book.setTitle("a");
-       System.out.println(bs.find("互","余",0));
-        System.out.println(bs.find("互","余",0).size());
-//        bs.add(book);
+
+       System.out.println( jotterArticleService.findAll(1,1));
+
 
     }
 
