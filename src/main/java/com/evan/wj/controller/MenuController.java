@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 public class MenuController {
 @Autowired
 AdminMenuService adminMenuService;
@@ -26,9 +27,14 @@ AdminMenuService adminMenuService;
         return res;
     }
 
+//    @GetMapping("/api/admin/role/menu")
+//    public List<AdminMenu> listAllMenus() {
+//        return adminMenuService.findByRid(1);
+//    }
     @GetMapping("/api/admin/role/menu")
-    public List<AdminMenu> listAllMenus() {
-        return adminMenuService.findByRid(1);
+    public List<AdminMenu> listRolesMenu(){
+        //return adminRoleService.findByUid();
+        return adminMenuService.findAll();
     }
 
 }

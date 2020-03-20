@@ -16,4 +16,6 @@ public class AdminPermissionService {
         return adminPermissionDao.findByRid(rid);
     }
 
+    public List<AdminPermission> findAll(){return adminPermissionDao.findAll();}
+
 }

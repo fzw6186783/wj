@@ -82,6 +82,8 @@ public class LoginController {
     @ResponseBody
     @GetMapping(value = "api/authentication")
     public String authentication(){
+
+        System.out.println("份认证成功");
         return "身份认证成功";
     }
 

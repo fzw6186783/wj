@@ -27,6 +27,7 @@ public class AdminMenuService {
         List<AdminMenu> menus = adminMenuDao.findByRid(rid);
         HashMap<Integer, AdminMenu> map = new HashMap<Integer, AdminMenu>();
         for (AdminMenu menu : menus) {
+             menu.setChildren(new ArrayList<AdminMenu>());
             map.put(menu.getId(), menu);
         }
 
@@ -44,8 +45,12 @@ public class AdminMenuService {
                 }
                 iterator.remove();
             }
+
         }
         return menus;
+    }
+    public List<AdminMenu> findByRid2(Integer rid) {
+        return adminMenuDao.findByRid(rid);
     }
     public List<AdminMenu> findByUser() {
         String username = SecurityUtils.getSubject().getPrincipal().toString();
@@ -53,6 +58,7 @@ public class AdminMenuService {
         List<AdminRole> a=adminRoleDao.findById(user.getId());
         List<AdminMenu> menus=new ArrayList<AdminMenu>();
         for(AdminRole b:a){
+
             menus.addAll(adminMenuDao.findByRid(b.getId()));
         }
         menus=quchong(menus);
@@ -60,6 +66,7 @@ public class AdminMenuService {
         //装载
         HashMap<Integer, AdminMenu> map = new HashMap<Integer, AdminMenu>();
         for (AdminMenu menu : menus) {
+            menu.setChildren(new ArrayList<AdminMenu>());
             map.put(menu.getId(), menu);
         }
         Iterator<AdminMenu> iterator = menus.iterator();
@@ -89,6 +96,31 @@ public class AdminMenuService {
                 iterator.remove();
             }
             else{map.add(menu.getId());}
+        }
+        return menus;
+    }
+    public List<AdminMenu> findAll(){
+        List<AdminMenu> menus = adminMenuDao.findAll();
+        HashMap<Integer, AdminMenu> map = new HashMap<Integer, AdminMenu>();
+        for (AdminMenu menu : menus) {
+            menu.setChildren(new ArrayList<AdminMenu>());
+            map.put(menu.getId(), menu);
+        }
+
+        Iterator<AdminMenu> iterator = menus.iterator();
+        while (iterator.hasNext()) {
+            AdminMenu menu = iterator.next();
+            if (map.containsKey(menu.getParentId())) {//有爹
+                AdminMenu die = map.get(menu.getParentId());
+                if (die.getChildren() == null) {
+                    die.setChildren(new ArrayList<AdminMenu>() {{
+                        this.add(menu);
+                    }});
+                } else {
+                    die.getChildren().add(menu);
+                }
+                iterator.remove();
+            }
         }
         return menus;
     }

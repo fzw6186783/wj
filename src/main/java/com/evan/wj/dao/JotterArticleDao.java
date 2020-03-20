@@ -1,10 +1,7 @@
 package com.evan.wj.dao;
 
 import com.evan.wj.bean.JotterArticle;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,6 +31,11 @@ public interface JotterArticleDao {
         @Result(property="articleDate",column="article_date")
 })
     public  JotterArticle  findById(Integer id);
+@Insert("insert into jotter_article values(default,#{j.articleTitle},#{j.articleContentHtml},#{j.articleContentMd},#{j.articleAbstract},#{j.articleCover},#{j.articleDate})")
+    public void add(@Param("j") JotterArticle j);
+@Update("update jotter_article set article_title=#{j.articleTitle},article_content_html=#{j.articleContentHtml},article_content_md=#{j.articleContentMd},article_abstract=#{j.articleAbstract},article_cover=#{j.articleCover},article_date=#{j.articleDate}" +
+        "where id=#{j.id}")
+    public void update(@Param("j") JotterArticle j);
 
 
 }

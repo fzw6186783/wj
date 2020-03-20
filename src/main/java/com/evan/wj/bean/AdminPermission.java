@@ -74,4 +74,5 @@ public class AdminPermission {
                 ", url='" + url + '\'' +
                 '}';
     }
+
 }

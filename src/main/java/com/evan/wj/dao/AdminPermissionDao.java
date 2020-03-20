@@ -15,4 +15,8 @@ public interface AdminPermissionDao {
         "on a.id=b.pid" +
         " where b.rid=#{rid}")
     public List<AdminPermission> findByRid(@Param("rid") Integer rid);
+@Select("select * from admin_permission")
+    public List<AdminPermission> findAll();
+
+
 }

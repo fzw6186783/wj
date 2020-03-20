@@ -22,13 +22,13 @@ public class LibraryController {
         return bookService.find(null,null,null);
     }
 
-    @PostMapping("/api/books")
+    @PostMapping("/api/admin/content/books")
     public Book addOrUpdate(@RequestBody Book book) throws Exception {
         bookService.update(book);
         return book;
     }
 
-    @PostMapping("/api/delete")
+    @PostMapping("/api/admin/content/books/delete")
     public void delete(@RequestBody Book book) throws Exception {
         bookService.delete(book);
     }
@@ -50,7 +50,7 @@ public class LibraryController {
     }
 
     @CrossOrigin
-    @PostMapping("api/covers")
+    @PostMapping("api/admin/content/books/covers")
     public String coversUpload(MultipartFile file) throws Exception {
         String folder = "c:/Users/86156/Desktop/image/";
         File imageFolder = new File(folder);

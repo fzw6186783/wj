@@ -92,5 +92,27 @@ public class User {
     public void setRoles(List<AdminRole> roles) {
         this.roles = roles;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                '}';
+    }
+
+    public User(Integer id, String name, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
 }
 
