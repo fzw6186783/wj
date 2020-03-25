@@ -1,6 +1,7 @@
 package com.evan.wj.realm;
 
 import com.evan.wj.bean.User;
+import com.evan.wj.service.AdminPermissionService;
 import com.evan.wj.service.UserService;
 
 import org.apache.shiro.authc.*;
@@ -22,11 +23,19 @@ public class WJRealm extends AuthorizingRealm {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AdminPermissionService adminPermissionService;
 
     // 简单重写获取授权信息方法
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        // 获取当前用户的所有权限
+        String username = principalCollection.getPrimaryPrincipal().toString();
+        Set<String> permissions = adminPermissionService.listPermissionURLsByUser(username);
+
+        // 将权限放入授权信息中
         SimpleAuthorizationInfo s = new SimpleAuthorizationInfo();
+        s.setStringPermissions(permissions);
         return s;
     }
 
@@ -35,6 +44,9 @@ public class WJRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userName = token.getPrincipal().toString();
         User user = userService.getByName(userName);
+        if (ObjectUtils.isEmpty(user)) {
+            throw new UnknownAccountException();
+        }
         String passwordInDB = user.getPassword();
         String salt = user.getSalt();
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userName, passwordInDB, ByteSource.Util.bytes(salt), getName());

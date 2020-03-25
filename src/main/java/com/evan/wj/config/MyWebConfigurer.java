@@ -1,6 +1,6 @@
 package com.evan.wj.config;
 
-import com.evan.wj.interceptor.LoginInterceptor;
+//import com.evan.wj.interceptor.LoginInterceptor;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.*;

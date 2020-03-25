@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @SpringBootTest
 class WjApplicationTests {
@@ -17,6 +16,8 @@ UserService userService;
 AdminRoleService adminRoleService;
 @Autowired
 AdminRoleMenuService adminRoleMenuService;
+    @Autowired
+    AdminPermissionService adminPermissionService;
 //    AdminMenuService adminMenuService;
     //AdminPermissionService  adminPermissionService;
     @Test
@@ -27,7 +28,15 @@ User user=new User(30,"1","23","2");
 //        AdminRole a=  new AdminRole(1);
 //        listrs.add(a);
 //        user.setRoles(listrs); userService.update(user);
-        System.out.println( adminRoleService.findAllPlus());
+//        System.out.println(adminPermissionService.listPermissionURLsByUser("admin"));
+        LinkedHashMap<Integer,Integer> map=new LinkedHashMap<>();
+        for(Map.Entry<Integer,Integer> a:map.entrySet()){
+
+        }
+
+
+
+
 
     }
 

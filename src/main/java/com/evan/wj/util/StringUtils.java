@@ -1,4 +1,4 @@
-package com.gm.wj.util;
+package com.evan.wj.util;
 
 import com.evan.wj.bean.AdminMenu;
 import org.apache.shiro.crypto.hash.Hash;

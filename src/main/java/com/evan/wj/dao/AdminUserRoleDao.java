@@ -14,4 +14,5 @@ public interface AdminUserRoleDao {
     public void add(@Param("user") User user,@Param("role")AdminRole role);
    @Delete("delete from admin_user_role where uid=#{user.id} ")
     public void delete(@Param("user") User user);
+
 }

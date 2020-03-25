@@ -126,7 +126,7 @@ public class AdminMenu {
                 ", iconCls='" + iconCls + '\'' +
                 ", component='" + component + '\'' +
                 ", parentId=" + parentId +
-                ", children=" + children +
+                "------------, children=" + children +"----------"+
                 '}';
     }
 }
