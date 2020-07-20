@@ -15,7 +15,7 @@ import java.util.List;
 @JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class AdminMenu {
     private int id;
-
+  int c;
     /**
      * Menu access path.
      */
